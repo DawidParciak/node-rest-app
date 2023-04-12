@@ -19,7 +19,7 @@ const App = () => {
   const formattedTime = useMemo(() => formatTime(time), [time]);
 
   const startTimer = () => {
-    setTime(30);
+    setTime(1200);
     setStatus('work');
     setTimer(setInterval(() => {
       setTime(time => time - 1);
@@ -50,7 +50,7 @@ const App = () => {
       }
       else if (status === 'rest'){
         setStatus('work'),
-        setTime(30);
+        setTime(1200);
         playBell();
       }
     }
