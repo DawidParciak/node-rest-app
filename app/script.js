@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { render } from 'react-dom';
 import { useState } from 'react';
 
@@ -9,8 +9,8 @@ const App = () => {
   const [timer, setTimer] = useState(null);
 
   const formatTime = time => {
-    const minutes = Math.floor(time/60);
-    const seconds = time % 60;
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
     
@@ -22,12 +22,25 @@ const App = () => {
     setTime(1200);
     setStatus('work');
     setTimer(setInterval(() => {
-      setTime(time => time + 1);
-    }));
+      setTime(time => time - 1);
+    }, 1000));
   }
 
+  useEffect(() => {
+    if (time === 0){
+      if (status === 'work'){
+        setStatus('rest'),
+        setTime(20)
+      }
+      else if (status === 'rest'){
+        setStatus('work'),
+        setTime(1200);
+      }
+    }
+  }, [time, status])
+
   return (
-    <div>
+    <div>-
       <h1>Protect your eyes</h1>
       { status === 'off' && (
         <div>
