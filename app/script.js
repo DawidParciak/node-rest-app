@@ -19,7 +19,7 @@ const App = () => {
   const formattedTime = useMemo(() => formatTime(time), [time]);
 
   const startTimer = () => {
-    setTime(1200);
+    setTime(30);
     setStatus('work');
     setTimer(setInterval(() => {
       setTime(time => time - 1);
@@ -36,15 +36,22 @@ const App = () => {
     window.close();
   } 
 
+  const playBell = () => {
+    const bell = new Audio('./sounds/bell.wav');
+    bell.play();
+  };
+
   useEffect(() => {
     if (time === 0){
       if (status === 'work'){
         setStatus('rest'),
         setTime(20)
+        playBell();
       }
       else if (status === 'rest'){
         setStatus('work'),
-        setTime(1200);
+        setTime(30);
+        playBell();
       }
     }
   }, [time, status])
