@@ -16,9 +16,15 @@ const App = () => {
     
     return `${formattedMinutes}:${formattedSeconds}`;
   }
-
   const formattedTime = useMemo(() => formatTime(time), [time]);
 
+  const startTimer = () => {
+    setTime(1200);
+    setStatus('work');
+    setTimer(setInterval(() => {
+      setTime(time => time + 1);
+    }));
+  }
 
   return (
     <div>
@@ -36,7 +42,7 @@ const App = () => {
           {formattedTime}
         </div>
       )}
-      { status === 'off' && (<button className="btn">Start</button>)}
+      { status === 'off' && (<button className="btn" onClick={startTimer}>Start</button>)}
       { status !== 'off' && (<button className="btn">Stop</button>)}
       <button className="btn btn-close">X</button>
     </div>
