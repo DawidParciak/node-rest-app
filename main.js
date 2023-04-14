@@ -11,7 +11,7 @@ function main() {
       nodeIntegration: true
     },
     width: 520,
-    height: 670,
+    height: 650,
     frame: false,
   })
 

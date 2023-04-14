@@ -57,7 +57,7 @@ const App = () => {
   }, [time, status])
 
   return (
-    <div>-
+    <div>
       <h1>Protect your eyes</h1>
       { status === 'off' && (
         <div>
@@ -65,8 +65,8 @@ const App = () => {
           <p>This app will help you track your time and inform you when it's time to rest.</p>
         </div>
       )}
-      { status === 'work' && (<img src="./images/work.png" />)}
-      { status === 'rest' && (<img src="./images/rest.png" />)}
+      { status === 'work' && (<img src="./images/Work.png" />)}
+      { status === 'rest' && (<img src="./images/Rest.png" />)}
       { status !== 'off' && (
         <div className="timer">
           {formattedTime}
